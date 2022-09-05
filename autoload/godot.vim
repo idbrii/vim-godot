@@ -142,3 +142,37 @@ func! godot#fzf_run_scene(...)
                 \}, 0))
 
 endfunc
+
+func! godot#convert_res_to_file_path(res_path) abort
+    let fpath = a:res_path
+
+    " Can't use root in substitute because if it contains backslash directory
+    " separators, they'll be treated as escapes.
+    let trimmed = substitute(fpath, "^res:/", "", "")
+
+    let g:test_david = ["godot#convert_res_to_file_path", fpath, trimmed, s:project_path()]
+    if len(trimmed) < len(fpath)
+        let fpath = s:project_path() .. trimmed
+        if filereadable(fpath)
+            return fpath
+        endif
+    endif
+    
+    return a:res_path
+endfunc
+
+
+func! godot#edit_file_under_cursor() abort
+    let fpath = expand('<cWORD>')
+    " Strip quotes
+    if fpath[0] == fpath[-1:-1] && fpath[0] =~# "['\"]"
+        let fpath = fpath[1:-2]
+    endif
+
+    let fpath = godot#convert_res_to_file_path(fpath)
+    if len(fpath)
+        execute "edit" fpath
+    else
+        normal! gf
+    endif
+endfunc

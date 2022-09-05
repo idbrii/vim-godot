@@ -59,6 +59,7 @@ nnoremap <silent><buffer>   [[ :<c-u>call <sid>section_start(1, v:count1)<CR>
 xmap <silent><buffer><expr> ]] "\<esc>".v:count1.']]m>gv'
 xmap <silent><buffer><expr> [[ "\<esc>".v:count1.'[[m>gv'
 
+nnoremap <silent><buffer>   gf :<c-u>call godot#edit_file_under_cursor()<CR>
 
 let &cpo = s:keepcpo
 unlet s:keepcpo
