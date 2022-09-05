@@ -150,6 +150,12 @@ func! godot#fzf_run_scene(...)
 
 endfunc
 
+
+func! godot#lcd_to_project_root() abort
+    exe 'lcd' s:project_path()
+endfunc
+
+
 func! godot#convert_res_to_file_path(res_path) abort
     let fpath = a:res_path
 
