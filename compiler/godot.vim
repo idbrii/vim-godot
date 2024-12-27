@@ -26,6 +26,11 @@ CompilerSet errorformat+=%tRROR:\ %.%#\\,\ script\ \'%f\'%m
 CompilerSet errorformat+=%ESCRIPT\ ERROR:\ %m
 CompilerSet errorformat+=%-C%\\s%#at:\ %s\ (%f:%l)
 
+" Match errors from Output window
+" res://main.gd:8 - Parse Error: Unexpected "Identifier" in class body.
+CompilerSet errorformat+=%f:%l\ -\ %m
+
+
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
