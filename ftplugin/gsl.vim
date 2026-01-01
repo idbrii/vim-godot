@@ -9,9 +9,11 @@ set cpo&vim
 
 let b:undo_ftplugin = 'setlocal suffixesadd<'
       \ . '|setlocal noexpandtab<'
+      \ . '|setlocal commentstring<'
 
 setlocal suffixesadd=.shader,.gdshader,.gdshaderinc
 setlocal noexpandtab
+setlocal commentstring=//\ %s
 
 command! -buffer -nargs=? -complete=customlist,godot#scene_complete GodotRun call godot#run(<q-args>)
 command! -buffer GodotRunFZF call godot#fzf_run_scene()
